@@ -7843,11 +7843,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EIK\\source\\repos\\MyBookingApp\\BookingApp.csproj",
+      "projectUniqueName": "C:\\Users\\EIK\\Source\\Repos\\StratisKara\\MyBookingApp\\BookingApp.csproj",
       "projectName": "BookingApp",
-      "projectPath": "C:\\Users\\EIK\\source\\repos\\MyBookingApp\\BookingApp.csproj",
+      "projectPath": "C:\\Users\\EIK\\Source\\Repos\\StratisKara\\MyBookingApp\\BookingApp.csproj",
       "packagesPath": "C:\\Users\\EIK\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EIK\\source\\repos\\MyBookingApp\\obj\\",
+      "outputPath": "C:\\Users\\EIK\\Source\\Repos\\StratisKara\\MyBookingApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
