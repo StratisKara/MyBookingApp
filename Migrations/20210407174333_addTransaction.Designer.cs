@@ -142,27 +142,6 @@ namespace BookingApp.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Bookmark", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OfferId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OfferId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Bookmark");
-                });
-
             modelBuilder.Entity("BookingApp.Models.HouseRules", b =>
                 {
                     b.Property<Guid>("Id")
@@ -520,21 +499,6 @@ namespace BookingApp.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Bookmark", b =>
-                {
-                    b.HasOne("BookingApp.Models.Offer", "Offer")
-                        .WithMany()
-                        .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookingApp.Models.User", null)
-                        .WithMany("Bookmarks")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Offer");
-                });
-
             modelBuilder.Entity("BookingApp.Models.HouseRules", b =>
                 {
                     b.HasOne("BookingApp.Models.Accommodation", "Accommodation")
@@ -652,7 +616,6 @@ namespace BookingApp.Migrations
                 {
                     b.Navigation("Accommodations");
 
-                    b.Navigation("Bookmarks");
                 });
 #pragma warning restore 612, 618
         }
