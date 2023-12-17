@@ -1,14 +1,14 @@
 ﻿@page
 @model ExternalLoginsModel
 @{
-    ViewData["Title"] = "Gérez vos connexions externes";
+    ViewData["Title"] = "Manage your external connections";
     ViewData["ActivePage"] = ManageNavPages.ExternalLogins;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
 @if (Model.CurrentLogins?.Count > 0)
 {
-<h4>Connexions externes ajoutées</h4>
+<h4>External connections added</h4>
     <table class="table">
         <tbody>
             @foreach (var login in Model.CurrentLogins)
@@ -22,7 +22,7 @@
                                 <div>
                                     <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                    <button type="submit" class="btn btn-primary" title="Remove this @login.ProviderDisplayName login from your account">Supprimer</button>
+                                    <button type="submit" class="btn btn-primary" title="Remove this @login.ProviderDisplayName login from your account">Delete</button>
                                 </div>
                             </form>
                         }
@@ -38,7 +38,7 @@
 }
 @if (Model.OtherLogins?.Count > 0)
 {
-    <h4>Ajouter un autre service externe pour vous connecter</h4>
+    <h4>Add another external service to connect to</h4>
     <hr />
     <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">

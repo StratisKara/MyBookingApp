@@ -1,7 +1,7 @@
 ﻿@page
 @model DeletePersonalDataModel
 @{
-    ViewData["Title"] = "Supprimer les données personnelles";
+    ViewData["Title"] = "Delete personal data";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
@@ -9,7 +9,7 @@
 
 <div class="alert alert-warning" role="alert">
     <p>
-        <strong>La suppression de ces données supprimera définitivement votre compte, et celui-ci ne pourra pas être récupéré.</strong>
+        <strong>Deleting this data will permanently delete your account, and it cannot be recovered.</strong>
     </p>
 </div>
 
@@ -24,7 +24,7 @@
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
         }
-    <button class="btn btn-danger" type="submit">Supprimer mes données et fermer mon compte</button>
+        <button class="btn btn-danger" type="submit">Delete my data and close my account</button>
     </form>
 </div>
 

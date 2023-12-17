@@ -1,7 +1,7 @@
 ﻿@page
 @model WalletModel
 @{
-    ViewData["Title"] = "Portefeuille Numérique";
+    ViewData["Title"] = "Digital Wallet";
     ViewData["ActivePage"] = ManageNavPages.Wallet;
 }
 
@@ -12,17 +12,17 @@
 <div class="row">
     <div class="col-md-6">
 
-        <h5>Solde du compte : @Model.AccountBalance €</h5>
+        <h5>Account balance : @Model.AccountBalance €</h5>
 
         <form asp-page-handler="CreditAccount" class="form-inline">
-            <label class="sr-only" for="inputAmount">Montant</label>
+            <label class="sr-only" for="inputAmount">Amount</label>
 
             <div class="input-group mb-3">
                 <input asp-for="@Model.Input.CreditAmount" type="text" class="form-control" min="1">
                 <span class="input-group-text">€</span>
             </div>
 
-            <button class="btn btn-success" type="submit">Créditer</button>
+            <button class="btn btn-success" type="submit">Credit</button>
         </form>
     </div>
 </div>

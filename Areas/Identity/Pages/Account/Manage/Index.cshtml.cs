@@ -29,14 +29,14 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Display(Name = "Prénom")]
+            [Display(Name = "First name")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Nom")]
+            [Display(Name = "Last name")]
             public string LastName { get; set; }
 
             [Phone]
-            [Display(Name = "N° de téléphone")]
+            [Display(Name = "Telephone number")]
             public string PhoneNumber { get; set; }
 
         }
@@ -92,7 +92,7 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
 
             // Update signin user informations
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Votre profil a été mis a jour";
+            StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
     }

@@ -43,18 +43,18 @@ namespace BookingApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Vous devez entrer votre adresse mail")]
+            [Required(ErrorMessage = "You must enter your email address")]
             // Use regex because "[EmailAddress]" don't print error if there is no top-level domain
-            [RegularExpression("^.+@.+\\..+$", ErrorMessage = "L'adresse mail n'est pas valide")]
+            [RegularExpression("^.+@.+\\..+$", ErrorMessage = "The email address is invalid")]
             [Display(Name = "Adresse mail")]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Vous devez entrer votre mot de passe")]
-            [Display(Name = "Mot de passe")]
+            [Required(ErrorMessage = "You must enter your password")]
+            [Display(Name = "Password")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Se souvenir de moi ?")]
+            [Display(Name = "Remember me ?")]
             public bool RememberMe { get; set; }
         }
 

@@ -68,7 +68,7 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
             userDetails.ConcurrencyStamp = null;
             userDetails.AccessFailedCount = -1;
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
+            Response.Headers.Add("Content-Arrangement", "attachment; filename=PersonalData.json");
             return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(userDetails), "application/json");
         }
     }
