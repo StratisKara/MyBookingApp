@@ -59,12 +59,12 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             {
-                StatusMessage = "La connexion externe n'a pas été supprimée.";
+                StatusMessage = "External connection has not been deleted.";
                 return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "La connexion externe a été supprimée.";
+            StatusMessage = "The external connection has been deleted.";
             return RedirectToPage();
         }
 
@@ -96,14 +96,14 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                StatusMessage = "La connexion externe n'a pas été ajoutée. Les connexions externes ne peuvent être associées qu'à un seul compte.";
+                StatusMessage = "The external connection has not been added. External connections can only be associated with one account.";
                 return RedirectToPage();
             }
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "La connexion externe a été ajoutée.";
+            StatusMessage = "External connection has been added.";
             return RedirectToPage();
         }
     }

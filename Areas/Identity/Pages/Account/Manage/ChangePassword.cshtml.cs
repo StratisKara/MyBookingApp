@@ -34,20 +34,20 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Vous devez saisir votre mot de passe actuel")]
+            [Required(ErrorMessage = "You must enter your passwordactuel")]
             [DataType(DataType.Password)]
-            [Display(Name = "Mot de passe actuel")]
+            [Display(Name = "Current Password")]
             public string OldPassword { get; set; }
 
-            [Required(ErrorMessage = "Vous devez saisir un nouveau mot de passe")]
-            [StringLength(100, ErrorMessage = "Le mot de passe doit faire au minimum {2} et au maximum {1} caractères.", MinimumLength = 6)]
+            [Required(ErrorMessage = "You must enter a new password")]
+            [StringLength(100, ErrorMessage = "The password must be a minimum of {2} and a maximum of {1} characters.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Nouveau mot de passe")]
+            [Display(Name = "New Password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmation nouveau mot de passe")]
-            [Compare("NewPassword", ErrorMessage = "Le nouveau mot de passe et la confirmation ne correspondent pas.")]
+            [Display(Name = "Confirm new password")]
+            [Compare("NewPassword", ErrorMessage = "New password and confirmation do not match.")]
             public string ConfirmPassword { get; set; }
         }
 

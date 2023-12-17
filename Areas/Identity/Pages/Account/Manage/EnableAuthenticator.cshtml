@@ -1,21 +1,21 @@
 ﻿@page
 @model EnableAuthenticatorModel
 @{
-    ViewData["Title"] = "Configurer l'application d'authentification";
+    ViewData["Title"] = "Configure the authenticator app";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h4>@ViewData["Title"]</h4>
 <div>
-    <p>Pour utiliser une application d'authentification, procédez comme suit:</p>
+    <p>To use an authenticator app, follow these steps:</p>
     <ol class="list">
         <li>
             <p>
-                Téléchargez une application d'authentification à deux facteurs comme Microsoft Authenticator pour
+                Download a two-factor authentication app like Microsoft Authenticator to
                 <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> | 
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> ou
-                Google Authenticator pour
+                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
+                Google Authenticator for
                 <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> | 
                 <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
             </p>
@@ -23,7 +23,8 @@
 
         <li>
             <p>
-                Scannez le QR code ou entrez cette clé <kbd>@Model.SharedKey</kbd> dans votre application d'authentification à deux facteurs. (Les espaces n'ont pas d'importance.)
+                Scan the QR code or enter this key
+                <kbd>@Model.SharedKey</kbd> in your two-factor authentication app. (Spaces don't matter.)
             </p>
             <div id="qrCode" style="margin-bottom: 1em;"></div>
             <div id="qrCodeData" data-url="@Html.Raw(@Model.AuthenticatorUri)"></div>
@@ -31,18 +32,18 @@
 
         <li>
             <p>
-                Une fois que vous avez scanné le QR code ou saisi la clé ci-dessus, votre application d'authentification à deux facteurs vous fournira 
-                un code unique. Entrez le code ci-dessous.
+                Once you scan the QR code or enter the key above, your two-factor authentication app will provide you
+                a unique code. Enter the code below.
             </p>
             <div class="row">
                 <div class="col-md-6">
                     <form id="send-code" method="post">
                         <div class="form-group">
-                            <label asp-for="Input.Code" class="control-label">Code de vérification</label>
+                            <label asp-for="Input.Code" class="control-label">Verification code</label>
                             <input asp-for="Input.Code" class="form-control" autocomplete="off" />
                             <span asp-validation-for="Input.Code" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Vérifier</button>
+                        <button type="submit" class="btn btn-primary">Verify</button>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     </form>
                 </div>

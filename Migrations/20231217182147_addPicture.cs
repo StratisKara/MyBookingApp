@@ -10,7 +10,7 @@ namespace BookingApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Picture");
+                name: "Pictures");
 
             migrationBuilder.AddColumn<string>(
                 name: "PictureUrl",
@@ -26,7 +26,7 @@ namespace BookingApp.Migrations
                 table: "Accommodations");
 
             migrationBuilder.CreateTable(
-                name: "Picture",
+                name: "Pictures",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -46,7 +46,7 @@ namespace BookingApp.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Picture_AccommodationId",
-                table: "Picture",
+                table: "Pictures",
                 column: "AccommodationId");
         }
     }
