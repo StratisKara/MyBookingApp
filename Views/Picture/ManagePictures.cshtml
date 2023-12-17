@@ -24,16 +24,6 @@
                     }
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Room" asp-action="ManageRooms" asp-route-id="@Model.Id">
-                    Pieces
-
-                    @if (Model.Rooms.Count == 0)
-                    {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 piece !">!</span>
-                    }
-                </a>
-            </li>
         </ul>
     </div>
     <div class="card-body text-start">

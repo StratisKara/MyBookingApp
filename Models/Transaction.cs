@@ -18,7 +18,7 @@ namespace BookingApp.Models
 
         public double Amount { get; set; }
 
-        [Display(Name = "Date de transaction")]
+        [Display(Name = "Transaction date")]
         [DataType(DataType.DateTime)]
         public DateTime TransactionDateTime { get; set; }
 

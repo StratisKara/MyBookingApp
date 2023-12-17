@@ -94,17 +94,13 @@ namespace BookingApp.Controllers
             {
                 int nbNight = (booking.DepartureDate - booking.ArrivalDate).Days;
                 double pricePerNight = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.PricePerNight).SingleOrDefaultAsync();
-                double cleaningFee = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.CleaningFee).SingleOrDefaultAsync();
 
                 User senderUser = await _userManager.GetUserAsync(User);
                 User receiverUser = await _context.Offers.Where(o => o.Id == booking.OfferId).Select(o => o.Accommodation.User).SingleOrDefaultAsync();
 
-                // Calcul total price
-                double totalPrice = pricePerNight * (double)nbNight + cleaningFee;
-
-                if (await new TransactionController(_context).DoTransaction(senderUser, receiverUser, totalPrice))
+                if (await new TransactionController(_context).DoTransaction(senderUser, receiverUser, pricePerNight))
                 {
-                    booking.TotalPrice = totalPrice;
+                    booking.TotalPrice = pricePerNight;
                     booking.UserId = (await _userManager.GetUserAsync(User)).Id;
 
                     _context.Add(booking);
@@ -113,7 +109,7 @@ namespace BookingApp.Controllers
                 else
                 {
                     TempData["AlertType"] = "danger";
-                    TempData["AlertMsg"] = "Vous n'avez pas le montant nécessaire pour procéder à la réservation, il vous manque " +  (totalPrice-senderUser.Balance) + " € ! Veuillez <a href=\"/Identity/Account/Manage/Wallet\">créditer votre compte</a>";
+                    TempData["AlertMsg"] = "You do not have enough funds to proceed with the reservation. You are missing " + (pricePerNight - senderUser.Balance) + " €! Please <a href=\"/Identity/Account/Manage/Wallet\">top up your account</a>.";
 
                     return RedirectToAction("View", "Offer", new { id = booking.OfferId });
                 }

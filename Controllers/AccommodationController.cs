@@ -61,9 +61,6 @@ namespace BookingApp.Controllers
                 .Include(a => a.Address)
                 .Include(a => a.User)
                 .Include(a => a.Pictures)
-                .Include(a => a.HouseRules)
-                .Include(a => a.Rooms)
-                .ThenInclude(r => r.Amenities)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (accommodation == null) {
@@ -85,15 +82,13 @@ namespace BookingApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Name, Type, MaxTraveler, Description")] Accommodation accommodation,
-            [Bind("StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
-            [Bind("ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
+            [Bind("Name, Type, MinRentalPeriod, MaxRentalPeriod, Description")] Accommodation accommodation,
+            [Bind("StreetAndNumber, Complement, City, PostalCode, Country")] Address address)
         {
             if (!ModelState.IsValid) { return View(accommodation); }
             
             accommodation.UserId = (await _userManager.GetUserAsync(User)).Id;
             accommodation.Address = address;
-            accommodation.HouseRules = houseRules;
                 
             _context.Add(accommodation);
             await _context.SaveChangesAsync();
@@ -111,9 +106,7 @@ namespace BookingApp.Controllers
 
             var accommodation = await _context.Accommodations
                 .Include(a => a.Address)
-                .Include(a => a.HouseRules)
                 .Include(a => a.Pictures)
-                .Include(a => a.Rooms)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (accommodation == null)
@@ -129,9 +122,8 @@ namespace BookingApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, 
-            [Bind("Id, Name, Type, MaxTraveler, Description")] Accommodation accommodation,
-            [Bind("Id, StreetAndNumber, Complement, City, PostalCode, Country")] Address address,
-            [Bind("Id, ArrivalHour, DepartureHour, PetAllowed, PartyAllowed, SmokeAllowed")] HouseRules houseRules)
+            [Bind("Id, Name, Type, MinRentalPeriod, MaxRentalPeriod, Description")] Accommodation accommodation,
+            [Bind("Id, StreetAndNumber, Complement, City, PostalCode, Country")] Address address)
         {
             if (id != accommodation.Id)
             {
@@ -143,7 +135,6 @@ namespace BookingApp.Controllers
             // Get accommodation's user
             accommodation.UserId = await _context.Accommodations.Where(a => a.Id == id).Select(a => a.UserId).SingleOrDefaultAsync();
             accommodation.Address = address;
-            accommodation.HouseRules = houseRules;
 
             try
             {

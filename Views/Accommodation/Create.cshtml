@@ -1,28 +1,24 @@
 ﻿@model BookingApp.Models.Accommodation
 
 @{
-    ViewData["Title"] = "Create an accomodation";
+    ViewData["Title"] = "Create an accommodation";
 }
 
 <div class="card text-center main-card">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs nav-fill">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="true" href="#">Informations</a>
+                <a class="nav-link active" aria-current="true" href="#">Information</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" aria-disabled="true">Photos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Pieces</a>
             </li>
         </ul>
     </div>
     <form asp-action="Create">
         <div class="card-body text-start">
 
-            <h5>General information :</h5>
-
+            <h5>General information:</h5>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -36,18 +32,22 @@
                 <div class="col-md-3">
                     <label asp-for="Type" class="control-label"></label>
                     <select asp-for="Type" class="form-control form-select">
+                        <option value="House">House</option>
                         <option value="Apartment">Apartment</option>
-                        <option value="Maison">Maison</option>
-                        <option value="Room in an apartment">Room in an apartment</option>
-                        <option value="Room in a house">Room in a house</option>
+                        <option value="Room">Room</option>
                     </select>
                     <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-2">
-                    <label asp-for="MaxTraveler" class="control-label"></label>
-                    <input asp-for="MaxTraveler" class="form-control" min="1" step="1" />
-                    <span asp-validation-for="MaxTraveler" class="text-danger"></span>
+                    <label asp-for="MinRentalPeriod" class="control-label"></label>
+                    <input asp-for="MinRentalPeriod" class="form-control" min="1" step="1" />
+                    <span asp-validation-for="MinRentalPeriod" class="text-danger"></span>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="MaxRentalPeriod" class="control-label"></label>
+                    <input asp-for="MaxRentalPeriod" class="form-control" min="1" step="1" />
+                    <span asp-validation-for="MaxRentalPeriod" class="text-danger"></span>
                 </div>
             </div>
 
@@ -58,19 +58,13 @@
             </div>
 
             <hr class="solid">
-            <h5>Address :</h5>
+            <h5>Address:</h5>
 
             <div class="row form-group">
                 <div class="col-md-7">
                     <label asp-for="Address.StreetAndNumber" class="control-label"></label>
                     <input asp-for="Address.StreetAndNumber" class="form-control" />
                     <span asp-validation-for="Address.StreetAndNumber" class="text-danger"></span>
-                </div>
-
-                <div class="col-md-5">
-                    <label asp-for="Address.Complement" class="control-label"></label>
-                    <input asp-for="Address.Complement" class="form-control"/>
-                    <span asp-validation-for="Address.Complement" class="text-danger"></span>
                 </div>
             </div>
 
@@ -81,12 +75,6 @@
                     <span asp-validation-for="Address.City" class="text-danger"></span>
                 </div>
 
-                <div class="col-md-2">
-                    <label asp-for="Address.PostalCode" class="control-label"></label>
-                    <input asp-for="Address.PostalCode" class="form-control"/>
-                    <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
-                </div>
-
                 <div class="col-md-4">
                     <label asp-for="Address.Country" class="control-label"></label>
                     <input asp-for="Address.Country" class="form-control" />
@@ -94,40 +82,11 @@
                 </div>
             </div>
 
-            <hr class="solid">
-            <h5>Internal regulations :</h5>
-
-            <div class="row form-group">
-                <div class="col">
-                    <label asp-for="HouseRules.ArrivalHour" class="control-label"></label>
-                    <input asp-for="HouseRules.ArrivalHour" type="time" class="form-control">
-                    <span asp-validation-for="HouseRules.ArrivalHour" class="text-danger"></span>
-                </div>
-
-                <div class="col">
-                    <label asp-for="HouseRules.DepartureHour" class="control-label"></label>
-                    <input asp-for="HouseRules.DepartureHour" type="time" class="form-control">
-                    <span asp-validation-for="HouseRules.DepartureHour" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.PetAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.PetAllowed" class="form-check-label"></label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.PartyAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.PartyAllowed" class="form-check-label"></label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.SmokeAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.SmokeAllowed" class="form-check-label"></label>
-            </div>
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Sauvegarder" class="btn btn-success" />
-            <a asp-action="Index" class="btn btn-outline-secondary">Retrun to CRUD</a>
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
         </div>
     </form>
 </div>

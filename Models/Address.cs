@@ -10,39 +10,32 @@ namespace BookingApp.Models
 {
     public class Address
     {
-		[ForeignKey("Accommodation")]
-		public Guid Id { get; set; }
+        [ForeignKey("Accommodation")]
+        public Guid Id { get; set; }
 
-		[JsonIgnore] 
-		public virtual Accommodation Accommodation { get; set; }
+        [JsonIgnore]
+        public virtual Accommodation Accommodation { get; set; }
 
-		[Required(ErrorMessage = "Vous devez entrer le N° et la rue de votre logement")]
-		[Display(Name = "N° et Rue")]
-		public String StreetAndNumber { get; set; }
+        [Required(ErrorMessage = "You must enter the street number and name of your accommodation")]
+        [Display(Name = "Street and Number")]
+        public String StreetAndNumber { get; set; }
 
-		[Display(Name = "Complément d'adresse")]
-		public String Complement { get; set; }
+        [Required(ErrorMessage = "You must enter the city of your accommodation")]
+        [Display(Name = "City")]
+        public String City { get; set; }
 
-		[Required(ErrorMessage = "Vous devez entrer le code postal de votre logement")]
-		[Display(Name = "Code postal")]
-		public String PostalCode { get; set; }
+        [Required(ErrorMessage = "You must enter the country of your accommodation")]
+        [Display(Name = "Country")]
+        public String Country { get; set; }
 
-		[Required(ErrorMessage = "Vous devez entrer la ville de votre logement")]
-		[Display(Name = "Ville")]
-		public String City { get; set; }
-
-		[Required(ErrorMessage = "Vous devez entrer le pays de votre logement")]
-		[Display(Name = "Pays")]
-		public String Country { get; set; }
-
-		public override String ToString()
+        public override String ToString()
         {
-			return StreetAndNumber + ", " + Complement + "\n" + PostalCode + " " + City + ", " + Country;
+            return StreetAndNumber + ", " + " " + City + ", " + Country;
         }
 
-		public String ShortAddress()
+        public String ShortAddress()
         {
-			return City + ", " + Country;
-		}
-	}
+            return City + ", " + Country;
+        }
+    }
 }

@@ -40,9 +40,6 @@
                         Departure date and time
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.NbPerson)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.TotalPrice)
                     </th>
                     <th style="text-align: right; padding-right: 1em;">
@@ -67,13 +64,10 @@
                             @Html.DisplayFor(modelItem => item.BookingDateTime)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ArrivalDate) @Html.DisplayFor(modelItem => item.ArrivalTime)
+                            @Html.DisplayFor(modelItem => item.ArrivalDate)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DepartureDate) @Html.DisplayFor(modelItem => item.DepartureTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NbPerson)
+                            @Html.DisplayFor(modelItem => item.DepartureDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TotalPrice) €

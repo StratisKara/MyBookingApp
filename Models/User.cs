@@ -7,25 +7,24 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BookingApp.Models
 {
-    // Add profile data for application users by adding properties to the User class
     public class User : IdentityUser
     {
         [PersonalData]
-        [Display(Name = "Prénom")]
+        [Display(Name = "First Name")]
         public String FirstName { get; set; }
 
         [PersonalData]
-        [Display(Name = "Nom")]
+        [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
         [PersonalData]
-        [Display(Name = "Solde")]
+        [Display(Name = "Balance")]
         public Double Balance { get; set; }
 
-        [Display(Name = "Logement(s)")]
+        [Display(Name = "Accommodations")]
         public virtual List<Accommodation> Accommodations { get; set; }
 
-        [Display(Name = "Favoris")]
+        [Display(Name = "Bookmarks")]
         public virtual List<Bookmark> Bookmarks { get; set; }
     }
 }

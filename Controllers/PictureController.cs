@@ -35,7 +35,6 @@ namespace BookingApp.Views.Accommodation
 
             var accommodation = await _context.Accommodations
                 .Include(a => a.Pictures)
-                .Include(a => a.Rooms)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (accommodation == null)

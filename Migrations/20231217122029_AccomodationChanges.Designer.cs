@@ -4,14 +4,16 @@ using BookingApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingApp.Migrations
 {
     [DbContext(typeof(AppContextDB))]
-    partial class AppContextDBModelSnapshot : ModelSnapshot
+    [Migration("20231217122029_AccomodationChanges")]
+    partial class AccomodationChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +64,14 @@ namespace BookingApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Complement")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -84,11 +93,20 @@ namespace BookingApp.Migrations
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<TimeSpan>("ArrivalTime")
+                        .HasColumnType("time");
+
                     b.Property<DateTime>("BookingDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("DepartureTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("NbPerson")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("OfferId")
                         .HasColumnType("uniqueidentifier");
@@ -140,6 +158,9 @@ namespace BookingApp.Migrations
 
                     b.Property<DateTime>("AddingDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<double>("CleaningFee")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("EndAvailability")
                         .HasColumnType("datetime2");

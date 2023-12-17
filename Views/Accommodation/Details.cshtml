@@ -45,13 +45,6 @@
             </dd>
 
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.HouseRules)
-            </dt>
-            <dd class="col-sm-10">
-                @Model.HouseRules
-            </dd>
-
-            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Pictures)
             </dt>
             <dd class="col-sm-10">
@@ -78,44 +71,6 @@
                     <p>No photos added</p>
                 }
             </dd>
-
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Rooms)
-            </dt>
-            <dd class="col-sm-10">
-                @if (Model.Rooms.Count != 0)
-                {
-                    foreach (var item in Model.Rooms)
-                    {
-                        <div class="card" style="margin-bottom:1em;">
-                            <div class="card-body">
-                                @{ var iconSrc = item.RoomType.ToString().ToLower() + ".svg"; }
-
-                                <h5 class="card-title">
-                                    <img src="~/svg/@iconSrc" alt="Room icon" height="20px" width="20px" style="vertical-align: -3px;" />
-                                    @TypeTranslate.ToFr(Enum.GetName(typeof(RoomTypes), item.RoomType))
-                                </h5>
-
-                                <div class="card-text">
-                                    <b>Equipment: </b>
-                                    @item.AmenitiesStr()
-
-                                    <form asp-action="ManageAmenities" asp-controller="Amenity" asp-route-roomId="@item.Id" method="get" style="display: inline-block;">
-                                        <button style="background: none; padding: 0; border: none;" type="submit">
-                                            <i class="bi bi-pencil-fill" style="color:orange; padding-left: 0.5em"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <p>No parts added</p>
-                }
-            </dd>
-
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Offers)
             </dt>
@@ -147,9 +102,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PricePerNight)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CleaningFee)
-                                </td>
+                    
                             </tr>
                         }
                     </table>

@@ -19,15 +19,6 @@
                     }
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Room" asp-action="ManageRooms" asp-route-id="@Model.Id">
-                    Pièces
-                    @if (Model.Rooms != null && Model.Rooms.Count == 0)
-                    {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo!">!</span>
-                    }
-                </a>
-            </li>
         </ul>
     </div>
 
@@ -40,7 +31,6 @@
 
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="Address.Id" />
-            <input type="hidden" asp-for="HouseRules.Id" />
 
             <div class="row form-group">
                 <div class="col-md-7">
@@ -61,9 +51,15 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label asp-for="MaxTraveler" class="control-label"></label>
-                    <input asp-for="MaxTraveler" class="form-control" min="1" step="1" />
-                    <span asp-validation-for="MaxTraveler" class="text-danger"></span>
+                    <label asp-for="MinRentalPeriod" class="control-label"></label>
+                    <input asp-for="MinRentalPeriod" class="form-control" min="1" step="1" />
+                    <span asp-validation-for="MinRentalPeriod" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-2">
+                    <label asp-for="MaxRentalPeriod" class="control-label"></label>
+                    <input asp-for="MaxRentalPeriod" class="form-control" min="1" step="1" />
+                    <span asp-validation-for="MaxRentalPeriod" class="text-danger"></span>
                 </div>
             </div>
 
@@ -82,12 +78,6 @@
                     <input asp-for="Address.StreetAndNumber" class="form-control" />
                     <span asp-validation-for="Address.StreetAndNumber" class="text-danger"></span>
                 </div>
-
-                <div class="col-md-5">
-                    <label asp-for="Address.Complement" class="control-label"></label>
-                    <input asp-for="Address.Complement" class="form-control" />
-                    <span asp-validation-for="Address.Complement" class="text-danger"></span>
-                </div>
             </div>
 
             <div class="row form-group">
@@ -97,47 +87,11 @@
                     <span asp-validation-for="Address.City" class="text-danger"></span>
                 </div>
 
-                <div class="col-md-2">
-                    <label asp-for="Address.PostalCode" class="control-label"></label>
-                    <input asp-for="Address.PostalCode" class="form-control" />
-                    <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
-                </div>
-
                 <div class="col-md-4">
                     <label asp-for="Address.Country" class="control-label"></label>
                     <input asp-for="Address.Country" class="form-control" />
                     <span asp-validation-for="Address.Country" class="text-danger"></span>
                 </div>
-            </div>
-
-            <hr class="solid">
-            <h5>Regulations:</h5>
-
-            <div class="row form-group">
-                <div class="col">
-                    <label asp-for="HouseRules.ArrivalHour" class="control-label"></label>
-                    <input asp-for="HouseRules.ArrivalHour" type="time" class="form-control">
-                    <span asp-validation-for="HouseRules.ArrivalHour" class="text-danger"></span>
-                </div>
-
-                <div class="col">
-                    <label asp-for="HouseRules.DepartureHour" class="control-label"></label>
-                    <input asp-for="HouseRules.DepartureHour" type="time" class="form-control">
-                    <span asp-validation-for="HouseRules.DepartureHour" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.PetAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.PetAllowed" class="form-check-label"></label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.PartyAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.PartyAllowed" class="form-check-label"></label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input asp-for="HouseRules.SmokeAllowed" type="checkbox" class="form-check-input">
-                <label asp-for="HouseRules.SmokeAllowed" class="form-check-label"></label>
             </div>
         </div>
 

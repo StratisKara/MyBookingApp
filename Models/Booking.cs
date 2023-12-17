@@ -12,43 +12,32 @@ namespace BookingApp.Models
 
         public Guid OfferId { get; set; }
 
-        [Display(Name = "Offre")]
+        [Display(Name = "Offer")]
         public virtual Offer Offer { get; set; }
 
         public string UserId { get; set; }
 
-        [Display(Name = "Utilisateur")]
+        [Display(Name = "User")]
         public virtual User User { get; set; }
 
-        [Display(Name = "Date de réservation")]
+        [Display(Name = "Booking Date")]
         [DataType(DataType.DateTime)]
         public DateTime BookingDateTime { get; set; }
 
-        [Display(Name = "Date d'arrivé")]
+        [Display(Name = "Arrival Date")]
         [DataType(DataType.Date)]
         public DateTime ArrivalDate { get; set; }
 
-        [Display(Name = "Horaire d'arrivé")]
-        [DataType(DataType.Time)]
-        public TimeSpan ArrivalTime { get; set; }
-
-        [Display(Name = "Date de départ")]
+        [Display(Name = "Departure Date")]
         [DataType(DataType.Date)]
         public DateTime DepartureDate { get; set; }
 
-        [Display(Name = "Horaire de départ")]
-        [DataType(DataType.Time)]
-        public TimeSpan DepartureTime { get; set; }
-
-        [Display(Name = "Nombre de voyageur(s)")]
-        public int NbPerson { get; set; }
-
-        [Display(Name = "Prix total")]
+        [Display(Name = "Total Price")]
         public double TotalPrice { get; set; }
 
         public Booking()
         {
             this.BookingDateTime = DateTime.Now;
         }
-	}
+    }
 }

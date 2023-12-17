@@ -18,10 +18,6 @@ namespace BookingApp.Data
 
         public DbSet<Picture> Pictures { get; set; }
 
-        public DbSet<Room> Rooms { get; set; }
-
-        public DbSet<Amenity> Amenity { get; set; }
-
         public DbSet<Bookmark> Bookmark { get; set; }
 
         public DbSet<Transaction> Transactions { get; set; }
