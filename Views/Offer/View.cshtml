@@ -80,26 +80,6 @@
                                 </div>
                                 </div>
 
-                                <div style="display: flex; gap: 30px;">
-                                    <div>
-                                    <label for="minRentalPeriod" class="form-label">Minimum rental period</label>
-                                    <select class="form-control form-select" id="minRentalPeriod" required>
-                                        @for (int i = 1; i <= Model.Accommodation.MinRentalPeriod; i++)
-                                        {
-                                            <option>@i</option>
-                                        }
-                                    </select></div>
-                                    <div>
-                                           <label for="maxRentalPeriod" class="form-label">Maximum rental period</label>
-                                    <select class="form-control form-select" id="maxRentalPeriod" required>
-                                        @for (int i = 1; i <= Model.Accommodation.MaxRentalPeriod; i++)
-                                        {
-                                            <option>@i</option>
-                                        }
-                                    </select>
-                                    </div>
-                                </div>
-
                            <div style="text-align: right">
                                 <div class="p-1">
                                     <h6 class="mb-0">Price per night: @Model.PricePerNight €</h6>
