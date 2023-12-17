@@ -99,9 +99,6 @@ namespace BookingApp.Migrations
                     b.Property<TimeSpan>("DepartureTime")
                         .HasColumnType("time");
 
-                    b.Property<int>("NbPerson")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("OfferId")
                         .HasColumnType("uniqueidentifier");
 

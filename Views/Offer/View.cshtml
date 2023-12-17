@@ -10,159 +10,107 @@
 
 <div class="card main-card-0_5">
 
-@*    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            @for (int i = 0; i < Model.Accommodation.Pictures.Count; i++)
-            {
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i"
-                        @if (i == 0) { @: class="active" aria-current="true"
-                        } aria-label="Slide @i"></button>
-            }
-        </div>
-
-        <div class="carousel-inner">
-            @{ var firstImg = true;
-                foreach (Picture picture in Model.Accommodation.Pictures)
-                {
-                        <div class="carousel-item @if (firstImg) {
-                        @:active
-                        firstImg = false; }">
-
-                            <a href="~/upload/@picture.FileName" target="_blank">
-                                <img src="~/upload/@picture.FileName" class="d-block w-100 card-img-top" style="object-fit: cover; width: 100%; height: 450px;" alt="">
-                            </a>
-                        </div>
-                }
-            }
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>*@
+    <div>
+        <img src="@Model.Accommodation.PictureUrl" class="d-block w-100 card-img-top" style="object-fit: cover; width: 100%; height: 450px;" alt="" />
+    </div>
 
     <div class="card-body">
 
-        <div class="container">
-            <div class="row">
 
                 <div class="col-sm-8">
                     <div class="row align-items-center">
 
                         <div class="col">
-                            <h3>@Model.Accommodation.Name</h3>
+                            <h3 class="mb-3">@Model.Accommodation.Name</h3>
                         </div>
                     </div>
-
-                    <hr class="solid">
 
                     <div class="d-grid gap-1">
                         <div class="p-1">
-                            <h5 style="display:inline;"><i class="bi bi-house-door" style="vertical-align: -1px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.Type</h6>
+                            <h6 class="mb-0">Type: @Model.Accommodation.Type</h6>
                         </div>
 
                         <div class="p-1">
-                            <h5 style="display:inline;"><i class="bi bi-geo-alt" style="vertical-align: -2px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.Address.ShortAddress()</h6>
+                            <h6 class="mb-0">Address: @Model.Accommodation.Address.StreetAndNumber, @Model.Accommodation.Address.City, @Model.Accommodation.Address.Country</h6>
                         </div>
 
                         <div class="p-1">
-                            <h5 style="display:inline;"><i class="bi bi-person" style="vertical-align: -1px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.MinRentalPeriod minimum rental period</h6>
+                            <h6 class="mb-0">@Model.Accommodation.MinRentalPeriod minimum rental period</h6>
                         </div>
 
                         <div class="p-1">
-                            <h5 style="display:inline;"><i class="bi bi-person" style="vertical-align: -1px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.MaxRentalPeriod maximum rental period</h6>
+                            <h6 class="mb-0">@Model.Accommodation.MaxRentalPeriod maximum rental period</h6>
                         </div>
 
-
                         <div class="p-1">
-                            <h5 style="display:inline;"><i class="bi bi-file-text" style="vertical-align: -2px;"></i></h5>
-                            <p class="card-text" style="display:inline;">@Model.Accommodation.Description</p>
+                            <p class="card-text mb-0">@Model.Accommodation.Description</p>
                         </div>
                     </div>
-
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="card shadow p-3 mb-5 bg-body rounded">
-                        <div class="card-header">
+                <div>
+                        <div class="card-header bg-primary text-white" style="text-align: center">
                             <h5 class="card-title">Reservation</h5>
                         </div>
                         <div class="card-body">
 
-                            <div class="d-grid gap-1">
-                                <div class="p-1">
-                                    <h6 style="display:inline;"><i class="bi bi-cash"></i></h6>
-                                    <h6 style="display:inline;">Price per night : @Model.PricePerNight €</h6>
-                                </div>
-                            </div>
-
-                            <hr class="solid">
-
-                            <p class="card-text">Select your reservation dates :</p>
+                            <p class="card-text">Select your reservation dates:</p>
 
                             <form asp-controller="Booking" asp-action="Create">
-                                <input type="hidden" asp-for="Id" name="OfferId"/>
+                                <input type="hidden" asp-for="Id" name="OfferId" />
 
-                                @{ 
+                                @{
                                     var minArrival = (DateTime.Now > Model.StartAvailability ? DateTime.Now : Model.StartAvailability);
                                 }
-
-                                <div class="row g-3" style="margin-bottom: 0.5em;">
-                                    <div class="col col-md-7">
-                                        <label for="inputArrivalDate">Arrival Date</label>
+                                          <div style="display: flex; gap: 30px;">
+                                <div>
+                                    <div>
+                                        <label for="inputArrivalDate" class="form-label">Arrival Date</label>
                                         <input type="date" class="form-control" id="inputArrivalDate" name="ArrivalDate"
                                                min="@minArrival.ToString("yyyy-MM-dd")" max="@Model.EndAvailability.AddDays(-1).ToString("yyyy-MM-dd")" required>
                                     </div>
-
                                 </div>
 
-                                <div class="row g-3" style="margin-bottom: 0.5em;">
-                                    <div class="col col-md-7">
-                                        <label for="inputDepartureDate">Departure Date</label>
+                                <div>
+                                    <div>
+                                        <label for="inputDepartureDate" class="form-label">Departure Date</label>
                                         <input type="date" class="form-control" id="inputDepartureDate" name="DepartureDate"
                                                min="@minArrival.AddDays(1).ToString("yyyy-MM-dd")" max="@Model.EndAvailability.ToString("yyyy-MM-dd")" required>
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="form-group">
-                                    <label for="nbPersonSelector">Minimum rental period</label>
+                                <div style="display: flex; gap: 30px;">
+                                    <div>
+                                    <label for="minRentalPeriod" class="form-label">Minimum rental period</label>
                                     <select class="form-control form-select" id="minRentalPeriod" required>
                                         @for (int i = 1; i <= Model.Accommodation.MinRentalPeriod; i++)
                                         {
                                             <option>@i</option>
                                         }
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="nbPersonSelector">Minimum rental period</label>
+                                    </select></div>
+                                    <div>
+                                           <label for="maxRentalPeriod" class="form-label">Maximum rental period</label>
                                     <select class="form-control form-select" id="maxRentalPeriod" required>
                                         @for (int i = 1; i <= Model.Accommodation.MaxRentalPeriod; i++)
                                         {
                                             <option>@i</option>
                                         }
                                     </select>
+                                    </div>
                                 </div>
 
-
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-success" type="submit">Reserve</button>
+                           <div style="text-align: right">
+                                <div class="p-1">
+                                    <h6 class="mb-0">Price per night: @Model.PricePerNight €</h6>
                                 </div>
+                            </div>
 
+                                <div class="d-grid gap-2" style="justify-content: right">
+                                    <button style="width: 200px" class="btn btn-success" type="submit">Reserve</button>
+                                </div>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 </div>

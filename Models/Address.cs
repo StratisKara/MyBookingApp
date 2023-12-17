@@ -28,14 +28,5 @@ namespace BookingApp.Models
         [Display(Name = "Country")]
         public String Country { get; set; }
 
-        public override String ToString()
-        {
-            return StreetAndNumber + ", " + " " + City + ", " + Country;
-        }
-
-        public String ShortAddress()
-        {
-            return City + ", " + Country;
-        }
     }
 }

@@ -15,39 +15,35 @@
     }
 </style>
 
-<div class="container-fluid px-1 px-sm-4 mx-auto"
-     @{String background_url = "/image/background" + new Random().Next(1, 9) + ".jpg";}
-     style="background-image: url('@background_url');
-     background-size: cover; background-position: center; width: 100%; height: auto; padding-top: 12em; padding-bottom: 10em; padding-left: 2em; padding-right:2em;">
-
+<div class="container-fluid px-1 px-sm-4 mx-auto">
+    <img src="https://coralhomes.com.au/wp-content/uploads/Atlanta-Series-1190x680.png" style="object-fit: cover; width: 100%; height: 500px; padding-bottom: 1rem"/>
     <div class="row d-flex justify-content-center">
-        <div class="col-md-10 col-lg-9 col-xl-8">
+        <div>
             <div class="card shadow-lg p-3 mb-5 rounded">
-                <div class="card-header bg-white">
-                    <h4 class="mb-1">Find the accommodation of your dreams</h4>
-                    <small class="text-muted">From a cozy country cottage to a designer city apartment</small>
-                </div>
-
                 <form asp-action="Search" method="get">
                     <div class="row g-3">
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">City</label>
+                            <label class="form-label">City</label>
                             <input type="text" class="form-control" name="city" required>
                         </div>
 
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">Arrival</label>
+                            <label class="form-label">Arrival</label>
                             <input type="date" class="form-control" name="arrivalDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
                         </div>
 
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">Departure</label>
+                            <label class="form-label">Departure</label>
                             <input type="date" class="form-control" name="departureDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
                         </div>
 
                         <div class="col-md-2">
-                            <label style="margin: 0.2em;">People</label>
-                            <input type="number" min="1" step="1" class="form-control" name="nbPerson" required>
+                            <label class="form-label">Type</label>
+                            <select class="form-control" name="type" required>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="room">Room</option>
+                            </select>
                         </div>
 
                         <div class="col-md-1 d-grid gap-2">
@@ -76,7 +72,7 @@
                         <div class="card shadow-sm">
                             <div class="card-body">
                                 <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" style="color: black; text-decoration: none;">
-                                    <h4 class="mb-1">@item.Accommodation.Address.ShortAddress()</h4>
+                                    <h4 class="mb-1">@item.Accommodation.Address.City</h4>
                                 </a>
                                  <img src="@item.Accommodation.PictureUrl" class="card-img-top" alt="Accommodation Image">
                                 <p class="card-text">
