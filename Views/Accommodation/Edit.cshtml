@@ -45,17 +45,17 @@
             <div class="row form-group">
                 <div class="col-md-7">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" placeholder="Studio entier à Paris avec vue sur le Jardin de Tuileries" />
+                    <input asp-for="Name" class="form-control" placeholder="Entire studio in Paris with view of the Tuileries Gardens" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
                     <label asp-for="Type" class="control-label"></label>
                     <select asp-for="Type" class="form-control form-select">
-                        <option value="Appartement">Appartement</option>
+                        <option value="Apartment">Apartment</option>
                         <option value="Maison">Maison</option>
-                        <option value="Chambre dans un appartement">Chambre dans un appartement</option>
-                        <option value="Chambre dans une maison">Chambre dans une maison</option>
+                        <option value="Room in an apartment">Room in an apartment</option>
+                        <option value="Room in a house">Room in a house</option>
                     </select>
                     <span asp-validation-for="Type" class="text-danger"></span>
                 </div>
@@ -143,7 +143,7 @@
 
         <div class="form-group">
             <input type="submit" value="Sauvegarder" class="btn btn-success" />
-            <a asp-action="Index" class="btn btn-outline-secondary">Retour au CRUD</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
         </div>
     </form>
 </div>

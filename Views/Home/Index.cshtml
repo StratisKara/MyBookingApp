@@ -24,29 +24,29 @@
         <div class="col-md-10 col-lg-9 col-xl-8">
             <div class="card shadow-lg p-3 mb-5 rounded">
                 <div class="card-header bg-white">
-                    <h4 class="mb-1">Trouvez l'hébergement de vos rêves</h4>
-                    <small class="text-muted">Du gîte champêtre cosy à l'appartement citadin design</small>
+                    <h4 class="mb-1">Find the accommodation of your dreams</h4>
+                    <small class="text-muted">From a cozy country cottage to a designer city apartment</small>
                 </div>
 
                 <form asp-action="Search" method="get">
                     <div class="row g-3">
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">Ville</label>
-                            <input type="text" class="form-control" name="city" placeholder="Où allez-vous ?" required>
+                            <label style="margin: 0.2em;">City</label>
+                            <input type="text" class="form-control" name="city" placeholder="Where are you going ?" required>
                         </div>
 
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">Arrivée</label>
+                            <label style="margin: 0.2em;">Arrival</label>
                             <input type="date" class="form-control" name="arrivalDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
                         </div>
 
                         <div class="col-md-3">
-                            <label style="margin: 0.2em;">Départ</label>
+                            <label style="margin: 0.2em;">Departure</label>
                             <input type="date" class="form-control" name="departureDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
                         </div>
 
                         <div class="col-md-2">
-                            <label style="margin: 0.2em;">Voyageurs</label>
+                            <label style="margin: 0.2em;">People</label>
                             <input type="number" min="1" step="1" class="form-control" name="nbPerson" placeholder="1" required>
                         </div>
 
@@ -66,11 +66,11 @@
 
         @if (ViewBag.Search == null)
         {
-            <h2>Dernières offres publiées</h2>
+            <h2>Latest published offers</h2>
         }
         else
         {
-            <h2>Offres correspondantes à votre recherche</h2>
+            <h2>Offers matching your search</h2>
         }
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-top: 1em;">
@@ -122,20 +122,20 @@
                                 </a>
 
                                 <p class="card-text">
-                                    Déposée par
+                                    Filled by
                                     @Html.DisplayFor(modelItem => item.Accommodation.User.FirstName) @Html.DisplayFor(modelItem => item.Accommodation.User.LastName)
                                 </p>
 
-                                <p>Disponible du @Html.DisplayFor(modelItem => item.StartAvailability) au @Html.DisplayFor(modelItem => item.EndAvailability)</p>
+                                <p>Available from @Html.DisplayFor(modelItem => item.StartAvailability) until @Html.DisplayFor(modelItem => item.EndAvailability)</p>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" class="btn btn-sm btn-outline-secondary">
-                                            Voir l'offre
+                                            See the offer
                                         </a>
                                     </div>
 
-                                    <small class="text-success" style="font-weight: bold;">@Html.DisplayFor(modelItem => item.PricePerNight) €/Nuit</small>
+                                    <small class="text-success" style="font-weight: bold;">@Html.DisplayFor(modelItem => item.PricePerNight) €/Night</small>
                                 </div>
                             </div>
                         </div>

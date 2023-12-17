@@ -20,17 +20,17 @@
 
                     @if (Model.Pictures.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="Vous devez ajouter au moins 1 photo !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo !">!</span>
                     }
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Room" asp-action="ManageRooms" asp-route-id="@Model.Id">
-                    Pièces
+                    Pieces
 
                     @if (Model.Rooms.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="Vous devez ajouter au moins 1 pièce !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 piece !">!</span>
                     }
                 </a>
             </li>
@@ -40,7 +40,7 @@
 
         @if (Model.Pictures.Count < 12)
         {
-            <h5>Ajouter des photos :</h5>
+            <h5>Add pictures :</h5>
 
             <form asp-action="ManagePictures" asp-route-id="@Model.Id" enctype="multipart/form-data" id="uploadPicturesForm">
                 <div class="input-group mb-3">
@@ -52,7 +52,7 @@
 
         @if (Model.Pictures.Count != 0)
         {
-            <h5>Photo(s) ajoutée(s) [@Model.Pictures.Count/12] :</h5>
+            <h5>Photo(s) added [@Model.Pictures.Count/12] :</h5>
 
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 @foreach (var item in Model.Pictures)

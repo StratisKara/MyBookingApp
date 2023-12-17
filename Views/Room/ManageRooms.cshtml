@@ -37,16 +37,16 @@
                     Photos
                     @if (Model.Pictures.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="Vous devez ajouter au moins 1 photo !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo !">!</span>
                     }
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="true" href="#">
-                    Pièces
+                    Pieces
                     @if (Model.Rooms.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="Vous devez ajouter au moins 1 pièce !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 piece !">!</span>
                     }
                 </a>
             </li>
@@ -60,7 +60,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h5>Ajouter une pièce :</h5>
+                        <h5>Add a room :</h5>
                     </div>
 
                     <div class="card-body">
@@ -75,17 +75,17 @@
                                 }
                             </select>
 
-                            <h5 style="margin-top: 1em;">Equipements</h5>
+                            <h5 style="margin-top: 1em;">Equipment</h5>
 
                             <div id="Bedroom">
                                 <div class="row g-3">
                                     <div class="col col-md-6">
-                                        <label class="sr-only" for="inputSingleBedNumber">Couchage 1 place :</label>
+                                        <label class="sr-only" for="inputSingleBedNumber">Single Beds :</label>
                                         <input type="number" class="form-control" id="inputSingleBedNumber" name="singleBedNumber" min="0" step="1" value=0>
                                     </div>
 
                                     <div class="col col-md-6">
-                                        <label class="sr-only" for="inputDoubleBedNumber">Couchage 2 places :</label>
+                                        <label class="sr-only" for="inputDoubleBedNumber">Double beds :</label>
                                         <input type="number" class="form-control" id="inputDoubleBedNumber" name="doubleBedNumber" min="0" step="1" value=0>
                                     </div>
                                 </div>
@@ -93,12 +93,12 @@
                                 <div style="margin-top: 0.5em;">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="tvCheckbox" name="tv">
-                                        <label class="form-check-label" for="tvCheckbox">Télévision</label>
+                                        <label class="form-check-label" for="tvCheckbox">TV</label>
                                     </div>
 
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="closetCheckbox" name="closet">
-                                        <label class="form-check-label" for="closetCheckbox">Penderie</label>
+                                        <label class="form-check-label" for="closetCheckbox">Wardrobe</label>
                                     </div>
                                 </div>
                             </div>
@@ -106,35 +106,35 @@
                             <div id="Bathroom" style="display:none;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="bathtubCheckbox" name="bathtub">
-                                    <label class="form-check-label" for="bathtubCheckbox">Baignoire</label>
+                                    <label class="form-check-label" for="bathtubCheckbox">Bathtub</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="showerCheckbox" name="shower">
-                                    <label class="form-check-label" for="showerCheckbox">Douche</label>
+                                    <label class="form-check-label" for="showerCheckbox">Shower</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="washingMachineCheckbox" name="washingMachine">
-                                    <label class="form-check-label" for="washingMachineCheckbox">Machine à laver</label>
+                                    <label class="form-check-label" for="washingMachineCheckbox">Washing machine</label>
                                 </div>
                             </div>
 
                             <div id="Kitchen" style="display:none;">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="ovenCheckbox" name="oven">
-                                    <label class="form-check-label" for="ovenCheckbox">Four</label>
+                                    <label class="form-check-label" for="ovenCheckbox">Oven</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="freezerCheckbox" name="freezer">
-                                    <label class="form-check-label" for="freezerCheckbox">Congélateur</label>
+                                    <label class="form-check-label" for="freezerCheckbox">Freezer</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="coffeeMakerCheckbox" name="coffeeMaker">
-                                    <label class="form-check-label" for="coffeeMakerCheckbox">Cafetière</label>
+                                    <label class="form-check-label" for="coffeeMakerCheckbox">Coffee maker</label>
                                 </div>
                             </div>
 
                             <div class="d-grid gap-2" style="margin-top: 1em;">
-                                <button class="btn btn-success" type="submit">Ajouter</button>
+                                <button class="btn btn-success" type="submit">Add</button>
                             </div>
                         </form>
                     </div>
@@ -142,7 +142,7 @@
             </div>
 
             <div class="col-md-8">
-                <h4>Pièce(s) ajoutée(s) [@Model.Rooms.Count] :</h4>
+                <h4>Added part(s) [@Model.Rooms.Count] :</h4>
 
                 @foreach (var item in Model.Rooms)
                 {

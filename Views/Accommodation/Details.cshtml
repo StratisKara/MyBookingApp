@@ -7,7 +7,7 @@
 
 <div class="card main-card">
     <div class="card-header">
-        <h3>Logement - Détails</h3>
+        <h3>Accommodation - Details</h3>
     </div>
 
     <div class="card-body">
@@ -75,7 +75,7 @@
                 }
                 else
                 {
-                    <p>Aucune photo ajoutée</p>
+                    <p>No photos added</p>
                 }
             </dd>
 
@@ -112,7 +112,7 @@
                 }
                 else
                 {
-                    <p>Aucune pièce ajoutée</p>
+                    <p>No parts added</p>
                 }
             </dd>
 
@@ -126,11 +126,11 @@
 
                     <table class="table">
                         <tr>
-                            <th>Date d'ajout</th>
-                            <th>Début disponibilité</th>
-                            <th>Fin disponibilité</th>
-                            <th>Prix / Nuit</th>
-                            <th>Frais de ménage</th>
+                            <th>Date Added</th>
+                            <th>Start of availability</th>
+                            <th>End of availability</th>
+                            <th>Price / Night</th>
+                            <th>Cleaning fee</th>
                         </tr>
                         @foreach (var item in Model.Offers)
                         {
@@ -156,7 +156,7 @@
                 }
                 else
                 {
-                    <p>Aucune offre ajoutée</p>
+                    <p>No offers added</p>
                 }
             </dd>
 
@@ -164,7 +164,7 @@
 
         <div class="text-center">
             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edition</a>
-            <a asp-action="Index" class="btn btn-outline-secondary">Retour au CRUD</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
         </div>
     </div>
 </div>

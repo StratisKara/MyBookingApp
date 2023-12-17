@@ -33,7 +33,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Welcome</a>
                         </li>
 
                         @if (SignInManager.IsSignedIn(User))
@@ -45,22 +45,22 @@
                                 if (await UserManager.IsInRoleAsync(user, "User"))
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Vos réservations</a>
+                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">My reservations</a>
                                     </li>
                                 }
                                 else if (await UserManager.IsInRoleAsync(user, "Host"))
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-controller="Accommodation" asp-action="Index">Vos logements</a>
+                                        <a class="nav-link text-dark" asp-controller="Accommodation" asp-action="Index">My accommodation</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-controller="Offer" asp-action="Index">Vos offres</a>
+                                        <a class="nav-link text-dark" asp-controller="Offer" asp-action="Index">My offers</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Vos réservations</a>
+                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">My accomodation</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="HostIndex">Réservations reçues</a>
+                                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="HostIndex">Reservations received</a>
                                     </li>
                                 }
                                 else if (await UserManager.IsInRoleAsync(user, "Admin"))
@@ -70,9 +70,9 @@
                                             CRUD
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <li><a class="dropdown-item" asp-controller="Accommodation" asp-action="Index">Logement</a></li>
-                                            <li><a class="dropdown-item" asp-controller="Offer" asp-action="Index">Offre</a></li>
-                                            <li><a class="dropdown-item" asp-controller="Booking" asp-action="Index">Réservation</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Accommodation" asp-action="Index">Accomodation</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Offer" asp-action="Index">Offer</a></li>
+                                            <li><a class="dropdown-item" asp-controller="Booking" asp-action="Index">Reservation</a></li>
                                         </ul>
                                     </li>
 
@@ -81,7 +81,7 @@
                                             Administration
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <li><a class="dropdown-item" asp-controller="User" asp-action="Index">CRUD Utilisateur</a></li>
+                                            <li><a class="dropdown-item" asp-controller="User" asp-action="Index">CRUD User</a></li>
                                         </ul>
                                     </li>
                                 }
@@ -103,7 +103,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - BookingApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - PWEB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 

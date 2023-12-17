@@ -100,7 +100,7 @@
 
                         <div class="p-1">
                             <h5 style="display:inline;"><i class="bi bi-person" style="vertical-align: -1px;"></i></h5>
-                            <h6 style="display:inline;">@Model.Accommodation.MaxTraveler voyageur(s) maximum</h6>
+                            <h6 style="display:inline;">@Model.Accommodation.MaxTraveler people maximum</h6>
                         </div>
 
                         <div class="p-1">
@@ -125,7 +125,7 @@
                                 </h5>
 
                                 <p class="card-text">
-                                    <b>Équipements: </b>
+                                    <b>Equipment: </b>
                                     @item.AmenitiesStr()
                                 </p>
                             </div>
@@ -134,29 +134,29 @@
 
                     <hr class="solid">
 
-                    <h4>Règlement du logement :</h4>
+                    <h4>Housing regulations :</h4>
 
                     <div class="d-grid gap-1">
                         <div class="p-1">
                             <img src="~/svg/clock.svg" alt="Clock icon" height="20px" width="20px" style="vertical-align: -4px; margin-right:3px;" />
                             <h6 style="display:inline;">
-                                Heure d'arrivée : Après @Model.Accommodation.HouseRules.ArrivalHour.ToString("hh\\hmm") - Heure de départ : Avant @Model.Accommodation.HouseRules.DepartureHour.ToString("hh\\hmm")
+                                Arrival time: After @Model.Accommodation.HouseRules.ArrivalHour.ToString("hh\\hmm") - Departure Time : Before @Model.Accommodation.HouseRules.DepartureHour.ToString("hh\\hmm")
                             </h6>
                         </div>
 
                         <div class="p-1">
                             <img src="~/svg/pet.svg" alt="Pet icon" height="20px" width="20px" style="vertical-align: -4px; margin-right:3px;" />
-                            <h6 style="display:inline;">Animaux autorisés : @(Model.Accommodation.HouseRules.PetAllowed ? "Oui" : "Non")</h6>
+                            <h6 style="display:inline;">Pets allowed : @(Model.Accommodation.HouseRules.PetAllowed ? "Yes" : "No")</h6>
                         </div>
 
                         <div class="p-1">
                             <img src="~/svg/party.svg" alt="Party icon" height="20px" width="20px" style="vertical-align: -4px; margin-right:3px;" />
-                            <h6 style="display:inline;">Fêtes autorisées : @(Model.Accommodation.HouseRules.PartyAllowed ? "Oui" : "Non")</h6>
+                            <h6 style="display:inline;">Parties allowed : @(Model.Accommodation.HouseRules.PartyAllowed ? "Yes" : "No")</h6>
                         </div>
 
                         <div class="p-1">
                             <img src="~/svg/smoke.svg" alt="Smoke icon" height="20px" width="20px" style="vertical-align: -4px; margin-right:3px;" />
-                            <h6 style="display:inline;">Logement fumeur : @(Model.Accommodation.HouseRules.SmokeAllowed ? "Oui" : "Non")</h6>
+                            <h6 style="display:inline;">Smoking allowed : @(Model.Accommodation.HouseRules.SmokeAllowed ? "Yes" : "No")</h6>
                         </div>
                     </div>
 
@@ -172,18 +172,18 @@
                             <div class="d-grid gap-1">
                                 <div class="p-1">
                                     <h6 style="display:inline;"><i class="bi bi-cash"></i></h6>
-                                    <h6 style="display:inline;">Prix par nuit : @Model.PricePerNight €</h6>
+                                    <h6 style="display:inline;">Price per night : @Model.PricePerNight €</h6>
                                 </div>
 
                                 <div class="p-1">
                                     <h6 style="display:inline;"><i class="bi bi-bucket"></i></h6>
-                                    <h6 style="display:inline;">Frais de ménage : @Model.CleaningFee €</h6>
+                                    <h6 style="display:inline;">Cleaning Fee : @Model.CleaningFee €</h6>
                                 </div>
                             </div>
 
                             <hr class="solid">
 
-                            <p class="card-text">Sélectionnez vos dates de réservations :</p>
+                            <p class="card-text">Select your reservation dates :</p>
 
                             <form asp-controller="Booking" asp-action="Create">
                                 <input type="hidden" asp-for="Id" name="OfferId"/>
@@ -194,13 +194,13 @@
 
                                 <div class="row g-3" style="margin-bottom: 0.5em;">
                                     <div class="col col-md-7">
-                                        <label for="inputArrivalDate">Arrivé</label>
+                                        <label for="inputArrivalDate">Arrival Date</label>
                                         <input type="date" class="form-control" id="inputArrivalDate" name="ArrivalDate"
                                                min="@minArrival.ToString("yyyy-MM-dd")" max="@Model.EndAvailability.AddDays(-1).ToString("yyyy-MM-dd")" required>
                                     </div>
 
                                     <div class="col col-md-5">
-                                        <label for="inputArrivalTime">Heure</label>
+                                        <label for="inputArrivalTime">Arrival Time</label>
                                         <input type="time" class="form-control" id="inputArrivalTime" name="ArrivalTime"
                                                min="@Model.Accommodation.HouseRules.ArrivalHour.ToString("hh\\:mm")" max="23:59" required>
                                     </div>
@@ -208,20 +208,20 @@
 
                                 <div class="row g-3" style="margin-bottom: 0.5em;">
                                     <div class="col col-md-7">
-                                        <label for="inputDepartureDate">Départ</label>
+                                        <label for="inputDepartureDate">Departure Date</label>
                                         <input type="date" class="form-control" id="inputDepartureDate" name="DepartureDate"
                                                min="@minArrival.AddDays(1).ToString("yyyy-MM-dd")" max="@Model.EndAvailability.ToString("yyyy-MM-dd")" required>
                                     </div>
 
                                     <div class="col col-md-5">
-                                        <label for="inputDepartureTime">Heure</label>
+                                        <label for="inputDepartureTime">Departure Time</label>
                                         <input type="time" class="form-control" id="inputDepartureTime" name="DepartureTime"
                                                min="00:00" max="@Model.Accommodation.HouseRules.DepartureHour.ToString("hh\\:mm")" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="nbPersonSelector">Nombre de voyageur(s)</label>
+                                    <label for="nbPersonSelector">Number of people</label>
                                     <select class="form-control form-select" id="nbPersonSelector" name="NbPerson" required>
                                         @for (int i = 1; i <= Model.Accommodation.MaxTraveler; i++)
                                         {
@@ -231,7 +231,7 @@
                                 </div>
 
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-success" type="submit">Réserver</button>
+                                    <button class="btn btn-success" type="submit">Reserve</button>
                                 </div>
 
                             </form>

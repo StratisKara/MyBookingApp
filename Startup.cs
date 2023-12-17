@@ -36,14 +36,14 @@ namespace BookingApp
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppContextDB>();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
 
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                });
+            //        options.ClientId = googleAuthNSection["ClientId"];
+            //        options.ClientSecret = googleAuthNSection["ClientSecret"];
+            //    });
 
             services.Configure<SecurityStampValidatorOptions>(o =>
                 o.ValidationInterval = TimeSpan.FromSeconds(0));
