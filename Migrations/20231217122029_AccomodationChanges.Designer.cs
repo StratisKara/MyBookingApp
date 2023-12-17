@@ -178,24 +178,6 @@ namespace BookingApp.Migrations
                     b.ToTable("Offers");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Picture", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccommodationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccommodationId");
-
-                    b.ToTable("Pictures");
-                });
 
             modelBuilder.Entity("BookingApp.Models.Transaction", b =>
                 {
@@ -496,15 +478,6 @@ namespace BookingApp.Migrations
                     b.Navigation("Accommodation");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Picture", b =>
-                {
-                    b.HasOne("BookingApp.Models.Accommodation", null)
-                        .WithMany("Pictures")
-                        .HasForeignKey("AccommodationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BookingApp.Models.Transaction", b =>
                 {
                     b.HasOne("BookingApp.Models.User", "Receiver")
@@ -577,7 +550,6 @@ namespace BookingApp.Migrations
 
                     b.Navigation("Offers");
 
-                    b.Navigation("Pictures");
                 });
 
             modelBuilder.Entity("BookingApp.Models.User", b =>

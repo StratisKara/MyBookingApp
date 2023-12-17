@@ -8,12 +8,3 @@ $(document).ready(function () {
 	});
 });	
 
-
-// Auto upload picture(s) when selected (for ManagePictures.cshtml)
-$(document).ready(function () {
-	$("#uploadPictures").on("change", function () {
-		$("#uploadPicturesForm").submit();
-	});
-
-	$("#uploadPicturesBtn").hide();
-});

@@ -60,7 +60,6 @@ namespace BookingApp.Controllers
                 .Include(a => a.Offers)
                 .Include(a => a.Address)
                 .Include(a => a.User)
-                .Include(a => a.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (accommodation == null) {
@@ -82,7 +81,7 @@ namespace BookingApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Name, Type, MinRentalPeriod, MaxRentalPeriod, Description")] Accommodation accommodation,
+            [Bind("Name, Type, MinRentalPeriod, MaxRentalPeriod, Description, PictureUrl")] Accommodation accommodation,
             [Bind("StreetAndNumber, Complement, City, PostalCode, Country")] Address address)
         {
             if (!ModelState.IsValid) { return View(accommodation); }
@@ -93,7 +92,7 @@ namespace BookingApp.Controllers
             _context.Add(accommodation);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("ManagePictures", "Picture", new { id = accommodation.Id });
+            return View(accommodation);
         }
 
         // GET: Accommodation/Edit/5
@@ -106,7 +105,6 @@ namespace BookingApp.Controllers
 
             var accommodation = await _context.Accommodations
                 .Include(a => a.Address)
-                .Include(a => a.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (accommodation == null)

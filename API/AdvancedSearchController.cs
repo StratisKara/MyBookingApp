@@ -50,9 +50,7 @@ namespace BookingApp
                             {
                                 City = o.Accommodation.Address.City,
                                 Country = o.Accommodation.Address.Country
-                            },
-
-                            Pictures = o.Accommodation.Pictures
+                            }
                         }
                     })
                     .ToListAsync();

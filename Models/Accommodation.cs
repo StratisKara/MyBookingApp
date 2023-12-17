@@ -22,9 +22,6 @@ namespace BookingApp.Models
         [Display(Name = "Address")]
         public virtual Address Address { get; set; }
 
-        [Display(Name = "Photo(s)")]
-        public virtual List<Picture> Pictures { get; set; }
-
         [Required(ErrorMessage = "You must enter a name for your accommodation")]
         [Display(Name = "Name")]
         public string Name { get; set; }
@@ -45,5 +42,9 @@ namespace BookingApp.Models
 
         [Required(ErrorMessage = "You must enter a description for your accommodation")]
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "You must add picture")]
+        [Display(Name = "Picture")]
+        public string PictureUrl { get; set; }
     }
 }

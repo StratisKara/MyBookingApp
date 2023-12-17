@@ -7,19 +7,22 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace BookingApp.Migrations
 {
     [DbContext(typeof(AppContextDB))]
-    [Migration("20210403020652_addAmenity")]
-    partial class addAmenity
+    [Migration("20231217182147_addPicture")]
+    partial class addPicture
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("BookingApp.Models.Accommodation", b =>
                 {
@@ -27,18 +30,21 @@ namespace BookingApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("HouseRulesId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MaxRentalPeriod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinRentalPeriod")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
@@ -50,10 +56,6 @@ namespace BookingApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("HouseRulesId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Accommodations");
@@ -62,21 +64,13 @@ namespace BookingApp.Migrations
             modelBuilder.Entity("BookingApp.Models.Address", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Complement")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -89,25 +83,6 @@ namespace BookingApp.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Amenity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("AmenityType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("Amenity");
-                });
-
             modelBuilder.Entity("BookingApp.Models.Booking", b =>
                 {
                     b.Property<Guid>("Id")
@@ -117,20 +92,11 @@ namespace BookingApp.Migrations
                     b.Property<DateTime>("ArrivalDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("ArrivalTime")
-                        .HasColumnType("time");
-
                     b.Property<DateTime>("BookingDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DepartureDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("DepartureTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("NbPerson")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("OfferId")
                         .HasColumnType("uniqueidentifier");
@@ -150,30 +116,25 @@ namespace BookingApp.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.HouseRules", b =>
+            modelBuilder.Entity("BookingApp.Models.Bookmark", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("ArrivalHour")
-                        .HasColumnType("time");
+                    b.Property<Guid>("OfferId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("DepartureHour")
-                        .HasColumnType("time");
-
-                    b.Property<bool>("PartyAllowed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PetAllowed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("SmokeAllowed")
-                        .HasColumnType("bit");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("HouseRules");
+                    b.HasIndex("OfferId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bookmark");
                 });
 
             modelBuilder.Entity("BookingApp.Models.Offer", b =>
@@ -187,9 +148,6 @@ namespace BookingApp.Migrations
 
                     b.Property<DateTime>("AddingDateTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<double>("CleaningFee")
-                        .HasColumnType("float");
 
                     b.Property<DateTime>("EndAvailability")
                         .HasColumnType("datetime2");
@@ -207,42 +165,31 @@ namespace BookingApp.Migrations
                     b.ToTable("Offers");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Picture", b =>
+            modelBuilder.Entity("BookingApp.Models.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AccommodationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ReceiverId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("AccommodationId");
-
-                    b.ToTable("Pictures");
-                });
-
-            modelBuilder.Entity("BookingApp.Models.Room", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccommodationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("RoomType")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("TransactionDateTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccommodationId");
+                    b.HasIndex("ReceiverId");
 
-                    b.ToTable("Rooms");
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("BookingApp.Models.User", b =>
@@ -316,7 +263,7 @@ namespace BookingApp.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -343,15 +290,16 @@ namespace BookingApp.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -367,15 +315,16 @@ namespace BookingApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -391,7 +340,7 @@ namespace BookingApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -415,7 +364,7 @@ namespace BookingApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -430,7 +379,7 @@ namespace BookingApp.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -451,37 +400,27 @@ namespace BookingApp.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("BookingApp.Models.Accommodation", b =>
                 {
-                    b.HasOne("BookingApp.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("BookingApp.Models.HouseRules", "HouseRules")
-                        .WithMany()
-                        .HasForeignKey("HouseRulesId");
-
                     b.HasOne("BookingApp.Models.User", "User")
                         .WithMany("Accommodations")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Address");
-
-                    b.Navigation("HouseRules");
-
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Amenity", b =>
+            modelBuilder.Entity("BookingApp.Models.Address", b =>
                 {
-                    b.HasOne("BookingApp.Models.Room", null)
-                        .WithMany("Amenities")
-                        .HasForeignKey("RoomId")
+                    b.HasOne("BookingApp.Models.Accommodation", "Accommodation")
+                        .WithOne("Address")
+                        .HasForeignKey("BookingApp.Models.Address", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Accommodation");
                 });
 
             modelBuilder.Entity("BookingApp.Models.Booking", b =>
@@ -501,6 +440,21 @@ namespace BookingApp.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BookingApp.Models.Bookmark", b =>
+                {
+                    b.HasOne("BookingApp.Models.Offer", "Offer")
+                        .WithMany()
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookingApp.Models.User", null)
+                        .WithMany("Bookmarks")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Offer");
+                });
+
             modelBuilder.Entity("BookingApp.Models.Offer", b =>
                 {
                     b.HasOne("BookingApp.Models.Accommodation", "Accommodation")
@@ -512,22 +466,19 @@ namespace BookingApp.Migrations
                     b.Navigation("Accommodation");
                 });
 
-            modelBuilder.Entity("BookingApp.Models.Picture", b =>
+            modelBuilder.Entity("BookingApp.Models.Transaction", b =>
                 {
-                    b.HasOne("BookingApp.Models.Accommodation", null)
-                        .WithMany("Pictures")
-                        .HasForeignKey("AccommodationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.HasOne("BookingApp.Models.User", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId");
 
-            modelBuilder.Entity("BookingApp.Models.Room", b =>
-                {
-                    b.HasOne("BookingApp.Models.Accommodation", null)
-                        .WithMany("Rooms")
-                        .HasForeignKey("AccommodationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("BookingApp.Models.User", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -583,21 +534,16 @@ namespace BookingApp.Migrations
 
             modelBuilder.Entity("BookingApp.Models.Accommodation", b =>
                 {
+                    b.Navigation("Address");
+
                     b.Navigation("Offers");
-
-                    b.Navigation("Pictures");
-
-                    b.Navigation("Rooms");
-                });
-
-            modelBuilder.Entity("BookingApp.Models.Room", b =>
-                {
-                    b.Navigation("Amenities");
                 });
 
             modelBuilder.Entity("BookingApp.Models.User", b =>
                 {
                     b.Navigation("Accommodations");
+
+                    b.Navigation("Bookmarks");
                 });
 #pragma warning restore 612, 618
         }

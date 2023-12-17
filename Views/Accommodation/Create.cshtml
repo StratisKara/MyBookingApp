@@ -5,16 +5,6 @@
 }
 
 <div class="card text-center main-card">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="true" href="#">Information</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Photos</a>
-            </li>
-        </ul>
-    </div>
     <form asp-action="Create">
         <div class="card-body text-start">
 
@@ -81,6 +71,18 @@
                     <span asp-validation-for="Address.Country" class="text-danger"></span>
                 </div>
             </div>
+
+            
+            <hr class="solid">
+            <h5>Image:</h5>
+              <div class="row form-group">
+                <div class="col-md-7">
+                    <label asp-for="PictureUrl" class="control-label"></label>
+                    <input asp-for="PictureUrl" class="form-control" />
+                    <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                </div>
+            </div>
+
 
         </div>
 

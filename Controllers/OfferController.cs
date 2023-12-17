@@ -199,7 +199,6 @@ namespace BookingApp.Controllers
             var offer = await _context.Offers
                 .Include(o => o.Accommodation)
                 .Include(o => o.Accommodation.Address)
-                .Include(o => o.Accommodation.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (offer == null)

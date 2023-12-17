@@ -25,8 +25,7 @@ namespace BookingApp.Controllers
             var appContextDB = _context.Offers
                 .Include(o => o.Accommodation)
                 .Include(o => o.Accommodation.Address)
-                .Include(o => o.Accommodation.User)
-                .Include(o => o.Accommodation.Pictures);
+                .Include(o => o.Accommodation.User);
 
             return View(await appContextDB.ToListAsync());
         }

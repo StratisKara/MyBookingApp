@@ -36,7 +36,6 @@ namespace BookingApp.Areas.Identity.Pages.Account.Manage
                 .Include(b => b.Offer.Accommodation)
                     .ThenInclude(a => a.Address)
                 .Include(b => b.Offer.Accommodation)
-                    .ThenInclude(a => a.Pictures)
                 .Include(b => b.Offer.Accommodation.User)
                 .ToListAsync();
         }
