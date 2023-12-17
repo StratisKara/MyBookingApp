@@ -61,17 +61,17 @@ namespace BookingApp.Areas.Identity.Pages.Account
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
-            [Required(ErrorMessage = "Vous devez entrer un mot de passe")]
-            [StringLength(100, ErrorMessage = "Le mot de passe doit contenir au minimum {2} et au maximum {1} caractères", MinimumLength = 6)]
+            [Required(ErrorMessage = "You must enter a password")]
+            [StringLength(100, ErrorMessage = "The password must contain a minimum of {2} and a maximum of {1} characters", MinimumLength = 6)]
             [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,£,€]).*$",
-                ErrorMessage = "Le mot de passe doit contenir au moins une lettre minuscule, une majuscule, un chiffre, un caractère spécial (!, @, #, $, %, ^, &, *, ?, _, ~, -, £, €) et posséder entre 6 et 100 caractères")]
+                ErrorMessage = "The password must contain at least one lowercase letter, one uppercase letter, one number, one special character (!, @, #, $, %, ^, &, *, ?, _, ~, -, £, €) and have between 6 and 100 characters")]
             [DataType(DataType.Password)]
-            [Display(Name = "Mot de passe")]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmation mot de passe")]
-            [Compare("Password", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas")]
+            [Display(Name = "Confirm password")]
+            [Compare("Password", ErrorMessage = "Password and confirmation do not match")]
             public string ConfirmPassword { get; set; }
         }
 
