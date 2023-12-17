@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Connexion";
+    ViewData["Title"] = "Connection";
 }
 
 <div class="card main-card">
@@ -16,7 +16,7 @@
             <div class="col-md-7">
                 <section>
                     <form id="account" method="post">
-                        <h4>Utilisez un compte local</h4>
+                        <h4>Use a local account</h4>
                         <hr />
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
@@ -38,17 +38,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Connexion</button>
+                            <button type="submit" class="btn btn-primary">Connection</button>
                         </div>
                         <div class="form-group">
                             <p>
-                                <a id="forgot-password" asp-page="./ForgotPassword">Mot de passe oublié ?</a>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password ?</a>
                             </p>
                             <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Inscrivez-vous en tant que nouvel utilisateur</a>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                             </p>
                             @*<p>
-                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Renvoyer l'e-mail de confirmation</a>
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend confirmation email</a>
                             </p>*@
                         </div>
                     </form>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-md-5 col-md-offset-2">
                 <section>
-                    <h4>Utilisez un service externe</h4>
+                    <h4>Use an external service</h4>
                     <hr />
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
