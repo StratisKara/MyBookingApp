@@ -21,19 +21,19 @@ namespace BookingApp
             _context = context;
         }
 
-        [HttpGet("{city}/{arrivalDate}/{departureDate}/{nbPerson}")]
-        public async Task<IEnumerable<Offer>> Get(string city, string arrivalDate, string departureDate, string nbPerson)
+        [HttpGet("{city}/{arrivalDate}/{departureDate}/{type}")]
+        public async Task<IEnumerable<Offer>> Get(string city, string arrivalDate, string departureDate, string type)
         {
             IEnumerable<Offer> offers = null;
 
             DateTime arrivalDateTime = DateTime.ParseExact(arrivalDate, "yyyy-MM-dd", null);
             DateTime departureDateTime = DateTime.ParseExact(departureDate, "yyyy-MM-dd", null);
-            int nbPersonInt = int.Parse(nbPerson);
 
-            if (arrivalDateTime < departureDateTime && !city.Equals(""))
+            if (arrivalDateTime < departureDateTime && !city.Equals("") && !type.Equals(""))
             {
+                int rentalPeriod = (int)(departureDateTime - arrivalDateTime).TotalDays;
                 offers = await _context.Offers
-                    .Where(o => o.StartAvailability <= arrivalDateTime && o.EndAvailability > arrivalDateTime && o.EndAvailability >= departureDateTime)
+                    .Where(o => o.StartAvailability <= arrivalDateTime && o.EndAvailability > arrivalDateTime && o.EndAvailability >= departureDateTime && rentalPeriod >= o.Accommodation.MinRentalPeriod && rentalPeriod <= o.Accommodation.MaxRentalPeriod && o.Accommodation.Address.City == city && o.Accommodation.Type == type)
                     .Select(o => new Offer {
                         Id = o.Id,
                         AddingDateTime = o.AddingDateTime,
@@ -45,6 +45,7 @@ namespace BookingApp
                             Name = o.Accommodation.Name,
                             Type = o.Accommodation.Type,
                             Description = o.Accommodation.Description,
+                            PictureUrl = o.Accommodation.PictureUrl,
 
                             Address = new Address
                             {

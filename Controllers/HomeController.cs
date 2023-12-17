@@ -41,11 +41,11 @@ namespace BookingApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Search(string city, string arrivalDate, string departureDate, string nbPerson)
+        public async Task<IActionResult> Search(string city, string arrivalDate, string departureDate, string type)
         {
             HttpClient client = new();
 
-            string path = this.Request.Scheme + "://" + this.Request.Host.Value + "/api/advancedsearch/" + city + "/" + arrivalDate + "/" + departureDate + "/" + nbPerson;
+            string path = this.Request.Scheme + "://" + this.Request.Host.Value + "/api/advancedsearch/" + city + "/" + arrivalDate + "/" + departureDate + "/" + type;
             Debug.WriteLine("Search API path: " + path);
 
             IEnumerable<Offer> offers = null;

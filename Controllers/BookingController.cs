@@ -88,7 +88,7 @@ namespace BookingApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("OfferId, ArrivalDate, ArrivalTime, DepartureDate, DepartureTime, NbPerson")] Booking booking)
+            [Bind("OfferId, ArrivalDate, ArrivalTime, DepartureDate, DepartureTime, Type")] Booking booking)
         {
             if (ModelState.IsValid)
             {
