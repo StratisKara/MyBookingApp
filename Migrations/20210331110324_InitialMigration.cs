@@ -182,8 +182,6 @@ namespace BookingApp.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StreetAndNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -198,27 +196,7 @@ namespace BookingApp.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "HouseRules",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ArrivalHour = table.Column<TimeSpan>(type: "time", nullable: false),
-                    DepartureHour = table.Column<TimeSpan>(type: "time", nullable: false),
-                    PetAllowed = table.Column<bool>(type: "bit", nullable: false),
-                    PartyAllowed = table.Column<bool>(type: "bit", nullable: false),
-                    SmokeAllowed = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HouseRules", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HouseRules_Accommodations_Id",
-                        column: x => x.Id,
-                        principalTable: "Accommodations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            
 
             migrationBuilder.CreateTable(
                 name: "Offers",
@@ -229,8 +207,7 @@ namespace BookingApp.Migrations
                     AddingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartAvailability = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndAvailability = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PricePerNight = table.Column<double>(type: "float", nullable: false),
-                    CleaningFee = table.Column<double>(type: "float", nullable: false)
+                    PricePerNight = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -253,7 +230,6 @@ namespace BookingApp.Migrations
                     BookingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DepartureDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NbPerson = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -356,8 +332,7 @@ namespace BookingApp.Migrations
             migrationBuilder.DropTable(
                 name: "Booking");
 
-            migrationBuilder.DropTable(
-                name: "HouseRules");
+
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

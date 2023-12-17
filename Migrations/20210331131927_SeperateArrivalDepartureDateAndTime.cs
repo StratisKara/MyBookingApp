@@ -17,30 +17,10 @@ namespace BookingApp.Migrations
                 table: "Booking",
                 newName: "ArrivalDate");
 
-            migrationBuilder.AddColumn<TimeSpan>(
-                name: "ArrivalTime",
-                table: "Booking",
-                type: "time",
-                nullable: false,
-                defaultValue: new TimeSpan(0, 0, 0, 0, 0));
-
-            migrationBuilder.AddColumn<TimeSpan>(
-                name: "DepartureTime",
-                table: "Booking",
-                type: "time",
-                nullable: false,
-                defaultValue: new TimeSpan(0, 0, 0, 0, 0));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "ArrivalTime",
-                table: "Booking");
-
-            migrationBuilder.DropColumn(
-                name: "DepartureTime",
-                table: "Booking");
 
             migrationBuilder.RenameColumn(
                 name: "DepartureDate",

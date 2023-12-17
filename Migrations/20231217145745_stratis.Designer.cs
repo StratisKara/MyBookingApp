@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingApp.Migrations
 {
     [DbContext(typeof(AppContextDB))]
-    [Migration("20231217130150_BookingChanges")]
-    partial class BookingChanges
+    [Migration("20231217145745_stratis")]
+    partial class stratis
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
