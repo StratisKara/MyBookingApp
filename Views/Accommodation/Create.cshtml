@@ -4,93 +4,95 @@
     ViewData["Title"] = "Create an accommodation";
 }
 
-<div class="card text-center main-card">
-    <form asp-action="Create">
+<div class="container mt-5">
+    <div class="card text-center main-card">
+        <div class="card-header bg-primary text-white">
+            <h2>@ViewData["Title"]</h2>
+        </div>
         <div class="card-body text-start">
+            <form asp-action="Create">
+                <h5 class="mt-3">General information:</h5>
 
-            <h5>General information:</h5>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row form-group">
+                    <div class="col-md-7">
+                        <label asp-for="Name" class="control-label">Accommodation Name</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-            <div class="row form-group">
-                <div class="col-md-7">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <div class="col-md-3">
+                        <label asp-for="Type" class="control-label">Accommodation Type</label>
+                        <select asp-for="Type" class="form-control form-select">
+                            <option value="House">House</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Room">Room</option>
+                        </select>
+                        <span asp-validation-for="Type" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label asp-for="MinRentalPeriod" class="control-label">Min Rental Period</label>
+                        <input asp-for="MinRentalPeriod" class="form-control" min="1" step="1" />
+                        <span asp-validation-for="MinRentalPeriod" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <label asp-for="MaxRentalPeriod" class="control-label">Max Rental Period</label>
+                        <input asp-for="MaxRentalPeriod" class="form-control" min="1" step="1" />
+                        <span asp-validation-for="MaxRentalPeriod" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="col-md-3">
-                    <label asp-for="Type" class="control-label"></label>
-                    <select asp-for="Type" class="form-control form-select">
-                        <option value="House">House</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Room">Room</option>
-                    </select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <div class="col-md-2">
-                    <label asp-for="MinRentalPeriod" class="control-label"></label>
-                    <input asp-for="MinRentalPeriod" class="form-control" min="1" step="1" />
-                    <span asp-validation-for="MinRentalPeriod" class="text-danger"></span>
-                </div>
-                <div class="col-md-2">
-                    <label asp-for="MaxRentalPeriod" class="control-label"></label>
-                    <input asp-for="MaxRentalPeriod" class="form-control" min="1" step="1" />
-                    <span asp-validation-for="MaxRentalPeriod" class="text-danger"></span>
-                </div>
-            </div>
+                <hr class="solid">
+                <h5>Address:</h5>
 
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-            <hr class="solid">
-            <h5>Address:</h5>
-
-            <div class="row form-group">
-                <div class="col-md-7">
-                    <label asp-for="Address.StreetAndNumber" class="control-label"></label>
-                    <input asp-for="Address.StreetAndNumber" class="form-control" />
-                    <span asp-validation-for="Address.StreetAndNumber" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col-md-6">
-                    <label asp-for="Address.City" class="control-label"></label>
-                    <input asp-for="Address.City" class="form-control"/>
-                    <span asp-validation-for="Address.City" class="text-danger"></span>
+                <div class="row form-group">
+                    <div class="col-md-7">
+                        <label asp-for="Address.StreetAndNumber" class="control-label">Street and Number</label>
+                        <input asp-for="Address.StreetAndNumber" class="form-control" />
+                        <span asp-validation-for="Address.StreetAndNumber" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-                    <label asp-for="Address.Country" class="control-label"></label>
-                    <input asp-for="Address.Country" class="form-control" />
-                    <span asp-validation-for="Address.Country" class="text-danger"></span>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <label asp-for="Address.City" class="control-label">City</label>
+                        <input asp-for="Address.City" class="form-control" />
+                        <span asp-validation-for="Address.City" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label asp-for="Address.Country" class="control-label">Country</label>
+                        <input asp-for="Address.Country" class="form-control" />
+                        <span asp-validation-for="Address.Country" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-            
-            <hr class="solid">
-            <h5>Image:</h5>
-              <div class="row form-group">
-                <div class="col-md-7">
-                    <label asp-for="PictureUrl" class="control-label"></label>
-                    <input asp-for="PictureUrl" class="form-control" />
-                    <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                <hr class="solid">
+                <h5>Image:</h5>
+
+                <div class="row form-group">
+                    <div class="col-md-7">
+                        <label asp-for="PictureUrl" class="control-label">Picture URL</label>
+                        <input asp-for="PictureUrl" class="form-control" />
+                        <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
 
-
+                <div class="form-group mt-3">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-success" />
-            <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
-        </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts {

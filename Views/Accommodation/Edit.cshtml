@@ -5,22 +5,6 @@
 }
 
 <div class="card text-center main-card">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="true" href="#">Information</a>
-            </li>
-         @*   <li class="nav-item">
-                <a class="nav-link" asp-controller="Picture" asp-action="ManagePictures" asp-route-id="@Model.Id">
-                    Photos
-                    @if (Model.Pictures != null && Model.Pictures.Count == 0)
-                    {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo!">!</span>
-                    }
-                </a>
-            </li>*@
-        </ul>
-    </div>
 
     <form asp-action="Edit">
         <div class="card-body text-start">
@@ -69,8 +53,15 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
+               <div class="form-group">
+                <label asp-for="PictureUrl" class="control-label"></label>
+                <textarea asp-for="PictureUrl" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="PictureUrl" class="text-danger"></span>
+            </div>
+
+
             <hr class="solid">
-            <h5>Adresse :</h5>
+            <h5>Address:</h5>
 
             <div class="row form-group">
                 <div class="col-md-7">
