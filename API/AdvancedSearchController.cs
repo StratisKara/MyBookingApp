@@ -21,8 +21,8 @@ namespace BookingApp
             _context = context;
         }
 
-        [HttpGet("{city}/{arrivalDate}/{departureDate}/{type}")]
-        public async Task<IEnumerable<Offer>> Get(string city, string arrivalDate, string departureDate, string type)
+        [HttpGet("{city}/{arrivalDate}/{departureDate}/{type}/{landlord?}")]
+        public async Task<IEnumerable<Offer>> Get(string city, string arrivalDate, string departureDate, string type, string landlord = "")
         {
             IEnumerable<Offer> offers = null;
 
@@ -33,7 +33,14 @@ namespace BookingApp
             {
                 int rentalPeriod = (int)(departureDateTime - arrivalDateTime).TotalDays;
                 offers = await _context.Offers
-                    .Where(o => o.StartAvailability <= arrivalDateTime && o.EndAvailability > arrivalDateTime && o.EndAvailability >= departureDateTime && rentalPeriod >= o.Accommodation.MinRentalPeriod && rentalPeriod <= o.Accommodation.MaxRentalPeriod && o.Accommodation.Address.City == city && o.Accommodation.Type == type)
+                    .Where(o => o.StartAvailability <= arrivalDateTime && 
+                    o.EndAvailability > arrivalDateTime && 
+                    o.EndAvailability >= departureDateTime && 
+                    rentalPeriod >= o.Accommodation.MinRentalPeriod && 
+                    rentalPeriod <= o.Accommodation.MaxRentalPeriod && 
+                    o.Accommodation.Address.City == city && 
+                    o.Accommodation.Type == type &&
+                    landlord.Equals("") || o.Accommodation.User.FirstName == landlord)
                     .Select(o => new Offer {
                         Id = o.Id,
                         AddingDateTime = o.AddingDateTime,
@@ -41,11 +48,13 @@ namespace BookingApp
                         EndAvailability = o.EndAvailability,
                         PricePerNight = o.PricePerNight,
 
+
                         Accommodation = new Accommodation {
                             Name = o.Accommodation.Name,
                             Type = o.Accommodation.Type,
                             Description = o.Accommodation.Description,
                             PictureUrl = o.Accommodation.PictureUrl,
+                            User = o.Accommodation.User,
 
                             Address = new Address
                             {

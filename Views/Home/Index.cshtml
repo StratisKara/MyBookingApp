@@ -19,40 +19,46 @@
     <img src="https://coralhomes.com.au/wp-content/uploads/Atlanta-Series-1190x680.png" style="object-fit: cover; width: 100%; height: 500px; padding-bottom: 1rem"/>
     <div class="row d-flex justify-content-center">
         <div>
-            <div class="card shadow-lg p-3 mb-5 rounded">
-                <form asp-action="Search" method="get">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="form-label">City</label>
-                            <input type="text" class="form-control" name="city" required>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label class="form-label">Arrival</label>
-                            <input type="date" class="form-control" name="arrivalDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label class="form-label">Departure</label>
-                            <input type="date" class="form-control" name="departureDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
-                        </div>
-
-                        <div class="col-md-2">
-                            <label class="form-label">Type</label>
-                            <select class="form-control" name="type" required>
-                                <option value="house">House</option>
-                                <option value="apartment">Apartment</option>
-                                <option value="room">Room</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-1 d-grid gap-2">
-                            <label> </label>
-                            <button type="submit" class="btn btn-success"><span class="bi bi-search"></span></button>
-                        </div>
-                    </div>
-                </form>
+           <div class="card shadow-lg p-3 mb-5 rounded">
+    <form asp-action="Search" method="get">
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" name="city" required>
             </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Arrival</label>
+                <input type="date" class="form-control" name="arrivalDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Departure</label>
+                <input type="date" class="form-control" name="departureDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Type</label>
+                <select class="form-control" name="type" required>
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="room">Room</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Landlord</label>
+                <input type="text" class="form-control" name="landlord">
+            </div>
+
+            <div class="col-md-1 d-grid gap-2">
+                <label> </label>
+                <button type="submit" class="btn btn-success"><span class="bi bi-search"></span></button>
+            </div>
+        </div>
+    </form>
+</div>
+
         </div>
     </div>
 </div>
