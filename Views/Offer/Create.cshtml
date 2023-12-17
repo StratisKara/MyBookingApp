@@ -1,7 +1,7 @@
 ﻿@model BookingApp.Models.Offer
 
 @{
-    ViewData["Title"] = "Création Offre";
+    ViewData["Title"] = "Create";
 }
 
 <div class="card main-card">
@@ -23,7 +23,7 @@
                 <div class="col-md-3">
                     <label asp-for="PricePerNight" class="control-label"></label>
                     <div class="input-group mb-3">
-                        <input asp-for="PricePerNight" class="form-control" placeholder="20"/>
+                        <input asp-for="PricePerNight" class="form-control"/>
                         <span class="input-group-text">€</span>
                     </div>
                     <span asp-validation-for="PricePerNight" class="text-danger"></span>
@@ -32,7 +32,7 @@
                 <div class="col-md-3">
                     <label asp-for="CleaningFee" class="control-label"></label>
                     <div class="input-group mb-3">
-                        <input asp-for="CleaningFee" class="form-control" placeholder="25"/>
+                        <input asp-for="CleaningFee" class="form-control"/>
                         <span class="input-group-text">€</span>
                     </div>
                     <span asp-validation-for="CleaningFee" class="text-danger"></span>

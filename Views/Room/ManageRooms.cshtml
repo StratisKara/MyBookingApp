@@ -1,7 +1,7 @@
 ﻿@model BookingApp.Models.Accommodation
 
 @{
-    ViewData["Title"] = "Gestion Pièces Logement";
+    ViewData["Title"] = "Room";
 }
 
 <script>
@@ -37,7 +37,7 @@
                     Photos
                     @if (Model.Pictures.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo!">!</span>
                     }
                 </a>
             </li>
@@ -46,7 +46,7 @@
                     Pieces
                     @if (Model.Rooms.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 piece !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 piece!">!</span>
                     }
                 </a>
             </li>

@@ -1,7 +1,7 @@
 ﻿@model BookingApp.Models.Accommodation
 
 @{
-    ViewData["Title"] = "Création Logement";
+    ViewData["Title"] = "Create an accomodation";
 }
 
 <div class="card text-center main-card">
@@ -29,7 +29,7 @@
             <div class="row form-group">
                 <div class="col-md-7">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" placeholder="Entire studio in Paris with view of the Tuileries Gardens" />
+                    <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
@@ -46,7 +46,7 @@
 
                 <div class="col-md-2">
                     <label asp-for="MaxTraveler" class="control-label"></label>
-                    <input asp-for="MaxTraveler" class="form-control" min="1" step="1" placeholder="2" />
+                    <input asp-for="MaxTraveler" class="form-control" min="1" step="1" />
                     <span asp-validation-for="MaxTraveler" class="text-danger"></span>
                 </div>
             </div>
@@ -63,13 +63,13 @@
             <div class="row form-group">
                 <div class="col-md-7">
                     <label asp-for="Address.StreetAndNumber" class="control-label"></label>
-                    <input asp-for="Address.StreetAndNumber" class="form-control" placeholder="92 Boulevard de Prague" />
+                    <input asp-for="Address.StreetAndNumber" class="form-control" />
                     <span asp-validation-for="Address.StreetAndNumber" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-5">
                     <label asp-for="Address.Complement" class="control-label"></label>
-                    <input asp-for="Address.Complement" class="form-control" placeholder="Appartement 116" />
+                    <input asp-for="Address.Complement" class="form-control"/>
                     <span asp-validation-for="Address.Complement" class="text-danger"></span>
                 </div>
             </div>
@@ -77,19 +77,19 @@
             <div class="row form-group">
                 <div class="col-md-6">
                     <label asp-for="Address.City" class="control-label"></label>
-                    <input asp-for="Address.City" class="form-control" placeholder="Paris" />
+                    <input asp-for="Address.City" class="form-control"/>
                     <span asp-validation-for="Address.City" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-2">
                     <label asp-for="Address.PostalCode" class="control-label"></label>
-                    <input asp-for="Address.PostalCode" class="form-control" placeholder="75001" />
+                    <input asp-for="Address.PostalCode" class="form-control"/>
                     <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-4">
                     <label asp-for="Address.Country" class="control-label"></label>
-                    <input asp-for="Address.Country" class="form-control" placeholder="France" />
+                    <input asp-for="Address.Country" class="form-control" />
                     <span asp-validation-for="Address.Country" class="text-danger"></span>
                 </div>
             </div>

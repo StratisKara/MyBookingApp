@@ -1,7 +1,7 @@
 ﻿@model BookingApp.Models.Accommodation
 
 @{
-    ViewData["Title"] = "Gestion Photos Logement";
+    ViewData["Title"] = "Picture";
 }
 
 <div style="padding-top: 0.5em">
@@ -20,7 +20,7 @@
 
                     @if (Model.Pictures.Count == 0)
                     {
-                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo !">!</span>
+                        <span class="badge rounded-pill bg-danger" title="You must add at least 1 photo!">!</span>
                     }
                 </a>
             </li>
@@ -45,7 +45,7 @@
             <form asp-action="ManagePictures" asp-route-id="@Model.Id" enctype="multipart/form-data" id="uploadPicturesForm">
                 <div class="input-group mb-3">
                     <input id="uploadPictures" type="file" name="files" class="form-control" aria-describedby="uploadPicturesBtn" multiple />
-                    <button class="btn btn-outline-secondary" type="submit" id="uploadPicturesBtn">Envoyer</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="uploadPicturesBtn">Send</button>
                 </div>
             </form>
         }

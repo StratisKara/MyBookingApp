@@ -1,7 +1,7 @@
 ﻿@model BookingApp.Models.Accommodation
 
 @{
-    ViewData["Title"] = "Détails Logement";
+    ViewData["Title"] = "Details";
 }
 
 
@@ -97,7 +97,7 @@
                                 </h5>
 
                                 <div class="card-text">
-                                    <b>Équipements: </b>
+                                    <b>Equipment: </b>
                                     @item.AmenitiesStr()
 
                                     <form asp-action="ManageAmenities" asp-controller="Amenity" asp-route-roomId="@item.Id" method="get" style="display: inline-block;">
@@ -164,7 +164,7 @@
 
         <div class="text-center">
             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edition</a>
-            <a asp-action="Index" class="btn btn-outline-secondary">Return to CRUD</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Return to managment</a>
         </div>
     </div>
 </div>
